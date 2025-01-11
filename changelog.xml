@@ -1,0 +1,10 @@
+<changelogs>
+	<changelog>
+		<element>mod_wickedteam_birthdays</element>
+		<type>module</type>
+		<version>1.0.0</version>
+		<note>
+			<item>Startup</item>
+		</note>
+	</changelog>
+</changelogs>

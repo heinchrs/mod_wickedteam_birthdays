@@ -1,0 +1,47 @@
+div#wickedteam_birthdays_container {
+	display: flex;
+	flex-direction: column; /* Richtet die Reihen untereinander aus */
+	gap: 10px; /* Optional: Abstand zwischen den Reihen */
+ }
+
+ div#wickedteam_birthdays_container div.birthday_entry {
+	display: flex;
+	width: 100%; /* Stellt sicher, dass die Zeile die gesamte Breite einnimmt */
+ }
+
+ div#wickedteam_birthdays_container div.birthday_name {
+	 flex: 1; /* Nimmt den restlichen verfügbaren Platz ein */
+	 white-space: nowrap; /* Verhindert Zeilenumbrüche */
+ }
+
+ div#wickedteam_birthdays_container div.birthday_date {
+	flex: 0 0 auto; /* Spalte passt sich an den Inhalt an */
+	margin-right: 15px; /* Optionaler Abstand zwischen Label und Wert */
+ }
+
+ div#wickedteam_birthdays_container div.birthday_date:before {
+   font-family: 'Font Awesome 5 Free';
+   content: "\f1fd"; /* birthday cake */
+   font-weight: 900;
+   float: left;
+   padding-right: 10px;
+   vertical-align: middle;
+   opacity: 0.9;
+   -webkit-transition: all .3s ease-in-out;
+   -moz-transition: all .3s ease-in-out;
+   -o-transition: all .3s ease-in-out;
+   transition: all .3s ease-in-out;
+ }
+
+ div#wickedteam_birthdays_container div.birthday_date:hover:before,
+ div#wickedteam_birthdays_container div.birthday_date:focus:before,
+ div#wickedteam_birthdays_container div.birthday_date:active:before {
+   opacity: 0.2;
+   content: "\f1fd"; /* birthday cake */
+   font-weight: 900;
+   -webkit-transform: rotate(45deg);
+   -moz-transform: rotate(45deg);
+   -ms-transform: rotate(45deg);
+   -o-transform: rotate(45deg);
+   transform: rotate(45deg);
+ }
