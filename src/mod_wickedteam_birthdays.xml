@@ -7,7 +7,7 @@
 	<authorUrl/>
 	<copyright>Heinl Christian, 2025</copyright>
 	<license>GNU / GPL V3</license>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<description>MOD_WICKEDTEAM_BIRTHDAYS_DESCRIPTION</description>
 	<files folder="site">
 		<folder>language</folder>
@@ -47,7 +47,7 @@
 		</fields>
 	</config>
 	<updateservers>
-		<server type="extension" name="WickedTeam Birthday" priority="1">https://raw.githubusercontent.com/heinchrs/mod_wickedteam_birthdays/main/.release/mod_wickedteam_birthdays_update.xml</server>
+		<server type="extension" name="WickedTeam Birthday" priority="1">https://rawcdn.githack.com/heinchrs/mod_wickedteam_birthdays/main/.release/mod_wickedteam_birthdays_update.xml</server>
 	</updateservers>
 	<scriptfile>script.install.php</scriptfile>
 </extension>
