@@ -18,13 +18,13 @@
 		<exclude name="**/.git/**"/>
 		<exclude name="**/.vscode/**"/>
 		<exclude name="**/.release/**"/>
-		<exclude name="**/media/**"/>
+		<exclude name="**/joomla/**"/>
 		<exclude name=".gitignore"/>
 		<exclude name="README.md"/>
 		<exclude name="build.xml"/>
 	</fileset>
 
-	<!-- Fileset for media files -->
+	<!-- Fileset for media files like CSS and javascrit -->
 	<fileset dir="./src/media" id="mediafiles">
 		<include name="**" />
 	</fileset>
@@ -35,14 +35,14 @@
 		<exclude name="**/.git/**"/>
 		<exclude name="**/.vscode/**"/>
 		<exclude name="**/.release/**"/>
-		<exclude name="build.xml"/>
+		<exclude name="**/joomla/**"/>
 		<exclude name=".gitignore"/>
 		<exclude name="README.md"/>
 		<exclude name="build.xml"/>
 	</fileset>
 
 	<target name="update-xml">
-		<!-- Task zum Bearbeiten der XML-Datei -->
+		<!-- Task for changing version information in joomla update source XML file -->
 		<echo msg="Updating version ${extension.version} in XML file" />
 		<reflexive file="./mod_wickedteam_birthdays_update.xml">
 			<filterchain>
@@ -63,6 +63,7 @@
 	<target name="prepare" depends="update-xml">
 		<echo msg="Preparing for version ${extension.version}" />
 		<mkdir dir="${zipsdir}" />
+		<mkdir dir="${joomladir}" />
 	</target>
 
 	<!-- ============================================	-->
@@ -70,14 +71,17 @@
 	<!-- ============================================	-->
 	<target name="main" description="main target" depends="prepare">
 
+		<!-- Copy module source files to joomla directory to show final file struture -->
 		<copy todir="${joomladir}/modules/mod_wickedteam_birthdays">
 			<fileset refid="modfiles" />
 		</copy>
 
+		<!-- Copy module media files to joomla directory to show final file struture -->
 		<copy todir="${joomladir}/media/mod_wickedteam_birthdays">
 			<fileset refid="mediafiles" />
 		</copy>
 
+		<!-- Create zip file for release -->
 		<zip destfile="${zipsdir}/${phing.project.name}-v${extension.version}.zip">
 			<fileset refid="zipfiles" />
 		</zip>

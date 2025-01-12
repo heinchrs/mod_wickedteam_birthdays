@@ -11,5 +11,5 @@
 # Built Visual Studio Code Extensions
 *.vsix
 
-# Folder Settings
-joomla/*
+# Ignore the entire joomla directory
+joomla/
