@@ -17,8 +17,6 @@ Using this module, it is possible to display the birthdays of WickedTeam members
 ## Files
 - .gitignore -> contains directories and files which should not be stored in remote repository
 - build.xml -> configuration file for packaging with [Phing](https://www.phing.info/)
-- changelog.xml -> changes implemented in different module versions. Will be copied into .release folder during packaging
-- mod_wickedteam_birthdays_update.xml -> template file for joomla update source. It will be adapted with version information during packaging
 
 
 ## Development

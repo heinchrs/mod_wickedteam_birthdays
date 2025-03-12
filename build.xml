@@ -10,7 +10,7 @@
 	<property name="zipsdir" value=".release" override="true" />
 
 	<!-- Read project XML file -->
-	<xmlproperty file="${srcdir}/${phing.project.name}.xml"/>
+    <xmlproperty file="${srcdir}/mod_wickedteam_birthdays.xml"/>
 
 	<!-- Fileset for site files -->
 	<fileset dir="./src" id="modfiles">
@@ -41,26 +41,45 @@
 		<exclude name="build.xml"/>
 	</fileset>
 
-	<target name="update-xml">
-		<!-- Task for changing version information in joomla update source XML file -->
-		<echo msg="Updating version ${extension.version} in XML file" />
-		<reflexive file="./mod_wickedteam_birthdays_update.xml">
-			<filterchain>
-				<replaceregexp>
-					<!-- Replace version information between <version>...</version>-->
-					<regexp pattern="&lt;version&gt;.*?&lt;/version&gt;" replace="&lt;version&gt;${extension.version}&lt;/version&gt;"/>
+	<target name="check-version-string">
+        <!-- Load XML into properties -->
+        <xmlproperty file="${zipsdir}/mod_wickedteam_birthdays_update.xml" />
 
-					<!-- Replace version information between <downloadurl ...>...</downloadurl>-->
-					<regexp pattern="&lt;downloadurl(.*?)&gt;.*?&lt;/downloadurl&gt;" replace="&lt;downloadurl\1&gt;https://raw.githubusercontent.com/heinchrs/mod_wickedteam_birthdays/main/.release/mod_wickedteam_birthdays-v${extension.version}.zip&lt;/downloadurl&gt;"/>
-				</replaceregexp>
-			</filterchain>
-		</reflexive>
-	</target>
+        <!-- Check if the version information is found in update XML -->
+        <if>
+            <matches string="${updates.update.version}" pattern="${extension.version}"/>
+            <then>
+                <echo>Version information ${extension.version} found in update XML!</echo>
+            </then>
+            <else>
+                <echo>*********************!!! ATTENTION !!!*************************</echo>
+                <echo>Update file does not contain information about the new version!</echo>
+                <echo>***************************************************************</echo>
+                <fail>Error during build process!</fail>
+            </else>
+        </if>
+
+        <!-- Read changelog XML file -->
+        <xmlproperty file="${zipsdir}/changelog.xml"/>
+        <!-- Check if the version information is found in changelog XML -->
+        <if>
+            <matches string="${changelogs.changelog.version}" pattern="${extension.version}"/>
+            <then>
+                <echo>Version information ${extension.version} found in changelog XML!</echo>
+            </then>
+            <else>
+                <echo>************************!!! ATTENTION !!!*************************</echo>
+                <echo>Changelog file does not contain information about the new version!</echo>
+                <echo>******************************************************************</echo>
+                <fail>Error during build process!</fail>
+            </else>
+        </if>
+    </target>
 
 	<!-- ============================================	-->
 	<!-- Target: prepare                             	-->
 	<!-- ============================================	-->
-	<target name="prepare" depends="update-xml">
+	<target name="prepare" description="Prepare for build">
 		<echo msg="Preparing for version ${extension.version}" />
 		<mkdir dir="${zipsdir}" />
 		<mkdir dir="${joomladir}" />
@@ -85,11 +104,6 @@
 		<zip destfile="${zipsdir}/${phing.project.name}-v${extension.version}.zip">
 			<fileset refid="zipfiles" />
 		</zip>
-
-		<!-- Copy changelog to release folder for uploading to repositiory -->
-		<copy file="changelog.xml" tofile="${zipsdir}/changelog.xml" />
-		<!-- Copy update xml to release folder for uploading to repositiory -->
-		<copy file="mod_wickedteam_birthdays_update.xml" tofile="${zipsdir}/mod_wickedteam_birthdays_update.xml" />
 	</target>
 
 	<!-- ============================================ 	-->

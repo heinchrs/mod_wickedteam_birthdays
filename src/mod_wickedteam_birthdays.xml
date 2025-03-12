@@ -46,8 +46,9 @@
 			</fieldset>
 		</fields>
 	</config>
+	<changelogurl>https://raw.githubusercontent.com/heinchrs/mod_wickedteam_birthdays/main/.release/changelog.xml</changelogurl>
 	<updateservers>
-		<server type="extension" name="WickedTeam Birthday" priority="1">https://rawcdn.githack.com/heinchrs/mod_wickedteam_birthdays/main/.release/mod_wickedteam_birthdays_update.xml</server>
+		<server type="extension" name="WickedTeam Birthday" priority="1">https://raw.githubusercontent.com/heinchrs/mod_wickedteam_birthdays/main/.release/mod_wickedteam_birthdays_update.xml</server>
 	</updateservers>
 	<scriptfile>script.install.php</scriptfile>
 </extension>

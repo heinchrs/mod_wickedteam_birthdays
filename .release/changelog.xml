@@ -2,9 +2,17 @@
 	<changelog>
 		<element>mod_wickedteam_birthdays</element>
 		<type>module</type>
+		<version>1.0.1</version>
+		<change>
+			<item>Update handling adapted</item>
+		</change>
+	</changelog>
+	<changelog>
+		<element>mod_wickedteam_birthdays</element>
+		<type>module</type>
 		<version>1.0.0</version>
 		<note>
-			<item>Startup</item>
+			<item>First version, adapted from correponding Kandanda birthday module</item>
 		</note>
 	</changelog>
 </changelogs>
